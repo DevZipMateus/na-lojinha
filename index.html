@@ -36,10 +36,30 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <link rel="stylesheet" href="style.css?v=4">
-  <title>Na Lojinha</title>
+  <link rel="stylesheet" href="style.css?v=5">
+  <title>Na Lojinha — Presentes e Itens Personalizados · Mairinque/SP</title>
 </head>
-<body>
+<body class="has-bar">
+
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loadingScreen">
+    <div class="loading-content">
+      <img src="images/logo.png" alt="Na Lojinha" class="loading-logo"
+        onerror="this.style.display='none';document.getElementById('loadingTexto').style.display='block'">
+      <span id="loadingTexto" style="display:none;font-size:1.8rem;font-weight:800;color:#D41472;font-family:'Poppins',sans-serif">Na Lojinha</span>
+      <div class="loading-bar"><div class="loading-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="container announcement-inner">
+      <span><i class="fas fa-gift"></i> Bem-vinda! Explore nossa vitrine online e encontre o presente perfeito 🎁</span>
+      <button class="announcement-close" id="announcementClose" aria-label="Fechar aviso">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
 
   <!-- ===== HEADER ===== -->
   <header id="header">
@@ -59,28 +79,36 @@
           <li><a href="#personalizacao">Personalização</a></li>
           <li><a href="#galeria">Galeria</a></li>
           <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
 
-      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-actions">
+        <button class="dark-toggle" id="darkToggle" aria-label="Alternar modo escuro">
+          <i class="fas fa-moon" id="darkIcon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- ===== MENU MOBILE (irmão do header) ===== -->
+  <!-- ===== MENU MOBILE ===== -->
   <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile" aria-hidden="true">
     <ul>
       <li><a href="#inicio" class="nav-link">Início</a></li>
       <li><a href="#sobre" class="nav-link">Sobre</a></li>
+      <li><a href="#categorias" class="nav-link">Categorias</a></li>
       <li><a href="#produtos" class="nav-link">Produtos</a></li>
       <li><a href="vitrine.html" class="nav-link nav-vitrine-mobile">🛍️ Vitrine online</a></li>
       <li><a href="#personalizacao" class="nav-link">Personalização</a></li>
       <li><a href="#galeria" class="nav-link">Galeria</a></li>
       <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+      <li><a href="#faq" class="nav-link">FAQ</a></li>
       <li><a href="#contato" class="nav-link">Contato</a></li>
     </ul>
   </nav>
@@ -99,7 +127,7 @@
         <h2>Presentes e lembranças que aquecem corações</h2>
         <p class="hero-desc">Um cantinho especial onde cada produto é escolhido com carinho para tornar seus momentos ainda mais inesquecíveis.</p>
         <div class="hero-btns">
-          <a href="https://wa.me/5515997333376" class="btn btn-rosa" aria-label="Falar no WhatsApp">
+          <a href="https://wa.me/5515997333376" class="btn btn-rosa" aria-label="Falar no WhatsApp" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i> Falar no WhatsApp
           </a>
           <a href="vitrine.html" class="btn btn-teal">
@@ -127,6 +155,43 @@
           <div class="hero-card-icon"><i class="fas fa-magic"></i></div>
           <span>Personalizado para você</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIAS ===== -->
+  <section id="categorias" class="section categorias-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Para cada momento</span>
+        <h2>Por ocasião</h2>
+        <p>Encontre o presente perfeito para cada momento especial da sua vida</p>
+      </div>
+      <div class="categorias-grid">
+        <a href="vitrine.html" class="categoria-card cat-casamento" aria-label="Casamento">
+          <div class="cat-icon"><i class="fas fa-rings-wedding"></i></div>
+          <span>Casamento</span>
+        </a>
+        <a href="vitrine.html" class="categoria-card cat-aniversario" aria-label="Aniversário">
+          <div class="cat-icon"><i class="fas fa-birthday-cake"></i></div>
+          <span>Aniversário</span>
+        </a>
+        <a href="vitrine.html" class="categoria-card cat-bebe" aria-label="Chá de Bebê">
+          <div class="cat-icon"><i class="fas fa-baby"></i></div>
+          <span>Chá de Bebê</span>
+        </a>
+        <a href="vitrine.html" class="categoria-card cat-natal" aria-label="Natal">
+          <div class="cat-icon"><i class="fas fa-snowflake"></i></div>
+          <span>Natal</span>
+        </a>
+        <a href="vitrine.html" class="categoria-card cat-maes" aria-label="Dia das Mães">
+          <div class="cat-icon"><i class="fas fa-heart"></i></div>
+          <span>Dia das Mães</span>
+        </a>
+        <a href="vitrine.html" class="categoria-card cat-formatura" aria-label="Formatura">
+          <div class="cat-icon"><i class="fas fa-graduation-cap"></i></div>
+          <span>Formatura</span>
+        </a>
       </div>
     </div>
   </section>
@@ -232,7 +297,7 @@
     </div>
   </section>
 
-  <!-- ===== BANNER VITRINE (dentro de produtos) ===== -->
+  <!-- ===== BANNER VITRINE ===== -->
   <section class="section vitrine-banner-section">
     <div class="container">
       <div class="vitrine-banner">
@@ -247,7 +312,7 @@
             <a href="vitrine.html" class="btn btn-branco">
               <i class="fas fa-store"></i> Acessar vitrine agora
             </a>
-            <a href="https://wa.me/5515997333376?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20produtos%20disponíveis%20na%20vitrine%20🎁" class="btn btn-branco-outline">
+            <a href="https://wa.me/5515997333376?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20produtos%20disponíveis%20na%20vitrine%20🎁" class="btn btn-branco-outline" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-whatsapp"></i> Tirar dúvidas
             </a>
           </div>
@@ -298,7 +363,7 @@
             <h3>Quer personalizar algo especial?</h3>
             <p>Fale com a gente pelo WhatsApp e vamos criar algo único juntos!</p>
           </div>
-          <a href="https://wa.me/5515997333376?text=Olá!%20Quero%20personalizar%20um%20produto%20da%20Na%20Lojinha%20🎁" class="btn btn-rosa">
+          <a href="https://wa.me/5515997333376?text=Olá!%20Quero%20personalizar%20um%20produto%20da%20Na%20Lojinha%20🎁" class="btn btn-rosa" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i> Falar com a gente
           </a>
         </div>
@@ -316,33 +381,64 @@
       </div>
 
       <div class="galeria-grid">
-        <div class="galeria-item gi-rosa">
+        <div class="galeria-item gi-rosa" data-lb-icon="fas fa-gift" data-lb-label="Presentes Especiais" role="button" tabindex="0" aria-label="Ver Presentes Especiais">
           <i class="fas fa-gift"></i>
           <span>Presentes</span>
         </div>
-        <div class="galeria-item gi-teal">
+        <div class="galeria-item gi-teal" data-lb-icon="fas fa-pen-fancy" data-lb-label="Itens Personalizados" role="button" tabindex="0" aria-label="Ver Itens Personalizados">
           <i class="fas fa-pen-fancy"></i>
           <span>Personalizados</span>
         </div>
-        <div class="galeria-item gi-rosa-claro">
+        <div class="galeria-item gi-rosa-claro" data-lb-icon="fas fa-home" data-lb-label="Decoração" role="button" tabindex="0" aria-label="Ver Decoração">
           <i class="fas fa-home"></i>
           <span>Decoração</span>
         </div>
-        <div class="galeria-item gi-teal-claro">
+        <div class="galeria-item gi-teal-claro" data-lb-icon="fas fa-ribbon" data-lb-label="Lembranças" role="button" tabindex="0" aria-label="Ver Lembranças">
           <i class="fas fa-ribbon"></i>
           <span>Lembranças</span>
         </div>
-        <div class="galeria-item gi-rosa">
+        <div class="galeria-item gi-rosa" data-lb-icon="fas fa-birthday-cake" data-lb-label="Datas Especiais" role="button" tabindex="0" aria-label="Ver Datas Especiais">
           <i class="fas fa-birthday-cake"></i>
           <span>Datas especiais</span>
         </div>
-        <div class="galeria-item gi-teal">
+        <div class="galeria-item gi-teal" data-lb-icon="fas fa-box-open" data-lb-label="Kits e Cestas" role="button" tabindex="0" aria-label="Ver Kits e Cestas">
           <i class="fas fa-box-open"></i>
           <span>Kits</span>
         </div>
       </div>
 
       <p class="galeria-nota">📸 Fotos dos produtos em breve — acompanhe nossas novidades!</p>
+    </div>
+  </section>
+
+  <!-- ===== INSTAGRAM MOCK FEED ===== -->
+  <section id="instagram" class="section instagram-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Siga-nos</span>
+        <h2>No Instagram</h2>
+        <p>Acompanhe nossas novidades, lançamentos e inspirações dia a dia</p>
+      </div>
+      <div class="instagram-grid">
+        <div class="insta-post ip-1" aria-hidden="true">🎁</div>
+        <div class="insta-post ip-2" aria-hidden="true">🎀</div>
+        <div class="insta-post ip-3" aria-hidden="true">✨</div>
+        <div class="insta-post ip-4" aria-hidden="true">🌸</div>
+        <div class="insta-post ip-5" aria-hidden="true">💝</div>
+        <div class="insta-post ip-6" aria-hidden="true">🎊</div>
+        <div class="insta-post ip-7" aria-hidden="true">🎉</div>
+        <div class="insta-post ip-8" aria-hidden="true">💕</div>
+        <div class="insta-post ip-9" aria-hidden="true">🎈</div>
+      </div>
+      <div class="instagram-cta">
+        <div class="instagram-handle">
+          <i class="fab fa-instagram"></i>
+          <span>Siga <strong>@nalojinha</strong> e fique por dentro de tudo!</span>
+        </div>
+        <a href="https://instagram.com/nalojinha" target="_blank" rel="noopener noreferrer" class="btn btn-rosa">
+          <i class="fab fa-instagram"></i> Seguir no Instagram
+        </a>
+      </div>
     </div>
   </section>
 
@@ -390,6 +486,80 @@
     </div>
   </section>
 
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="section faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Dúvidas</span>
+        <h2>Perguntas frequentes</h2>
+        <p>Respondemos as principais dúvidas sobre nossos produtos e serviços</p>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Como faço para personalizar um produto?</span>
+            <div class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer" aria-hidden="true">
+            <p>É simples! Entre em contato pelo WhatsApp ou acesse nossa vitrine online. Informe o produto desejado e os detalhes da personalização (nome, foto, mensagem) e nossa equipe cuidará de tudo com muito carinho.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Qual é o prazo de entrega dos produtos personalizados?</span>
+            <div class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer" aria-hidden="true">
+            <p>O prazo varia conforme o tipo de produto e a complexidade da personalização. Em média, produtos personalizados ficam prontos em 3 a 7 dias úteis. Para datas comemorativas, recomendamos solicitar com antecedência.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Vocês entregam fora de Mairinque?</span>
+            <div class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer" aria-hidden="true">
+            <p>Sim! Realizamos entregas para todo o Brasil pelos Correios ou transportadoras. Para clientes da região de Mairinque, também oferecemos entrega local. Entre em contato para detalhes e valores de frete.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Quais formas de pagamento são aceitas?</span>
+            <div class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer" aria-hidden="true">
+            <p>Aceitamos PIX, cartão de crédito, débito e dinheiro na loja física. Para pedidos online, trabalhamos com PIX e transferência bancária. Consulte condições de parcelamento pelo WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Como funciona a vitrine online?</span>
+            <div class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer" aria-hidden="true">
+            <p>Nossa vitrine online é nosso catálogo digital! Lá você encontra todos os produtos disponíveis com fotos, descrições e preços. Clique em "Acessar Vitrine", escolha o produto e entre em contato pelo WhatsApp para finalizar o pedido.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Posso fazer trocas ou devoluções?</span>
+            <div class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></div>
+          </button>
+          <div class="faq-answer" aria-hidden="true">
+            <p>Para produtos com defeito ou divergência com o pedido, realizamos troca conforme o Código de Defesa do Consumidor. Produtos personalizados não são elegíveis para troca por desistência — verifique todos os detalhes antes de confirmar.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CONTATO ===== -->
   <section id="contato" class="section contato-section">
     <div class="container">
@@ -397,6 +567,49 @@
         <span class="section-tag">Fale conosco</span>
         <h2>Entre em contato</h2>
         <p>Estamos prontas para te atender com todo o carinho que você merece</p>
+      </div>
+
+      <!-- Formulário de contato -->
+      <div class="contato-form-wrap">
+        <h3>Envie uma mensagem</h3>
+        <p>Preencha o formulário e entraremos em contato em breve pelo WhatsApp</p>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fNome">Seu nome *</label>
+              <input type="text" id="fNome" name="nome" placeholder="Maria Silva" required>
+            </div>
+            <div class="form-group">
+              <label for="fWhatsapp">Seu WhatsApp</label>
+              <input type="tel" id="fWhatsapp" name="whatsapp" placeholder="(15) 99999-9999">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fEmail">E-mail</label>
+              <input type="email" id="fEmail" name="email" placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+              <label for="fAssunto">Assunto</label>
+              <select id="fAssunto" name="assunto">
+                <option value="Personalização">Personalização</option>
+                <option value="Dúvida sobre produto">Dúvida sobre produto</option>
+                <option value="Orçamento">Orçamento</option>
+                <option value="Encomenda">Encomenda</option>
+                <option value="Outro">Outro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fMensagem">Mensagem *</label>
+            <textarea id="fMensagem" name="mensagem" placeholder="Olá! Gostaria de saber mais sobre..." required></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-rosa">
+              <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
+            </button>
+          </div>
+        </form>
       </div>
 
       <div class="contato-grid">
@@ -431,8 +644,7 @@
               <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 12h</p>
             </div>
           </div>
-
-          <a href="https://wa.me/5515997333376?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20Na%20Lojinha%20🎁" class="btn btn-rosa btn-full">
+          <a href="https://wa.me/5515997333376?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20Na%20Lojinha%20🎁" class="btn btn-rosa btn-full" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i> Enviar mensagem
           </a>
         </div>
@@ -468,6 +680,7 @@
         <a href="#produtos">Produtos</a>
         <a href="#personalizacao">Personalização</a>
         <a href="#galeria">Galeria</a>
+        <a href="#faq">FAQ</a>
         <a href="#contato">Contato</a>
       </nav>
       <div class="footer-bottom">
@@ -489,6 +702,45 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <script src="script.js?v=3"></script>
+  <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
+  <button class="btn-topo" id="btnTopo" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ===== CURSOR PERSONALIZADO ===== -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- ===== POPUP BOAS-VINDAS ===== -->
+  <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-label="Bem-vinda à Na Lojinha">
+    <div class="popup-box">
+      <button class="popup-close" id="popupClose" aria-label="Fechar popup">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="popup-deco" aria-hidden="true">🎁</div>
+      <h3>Bem-vinda à Na Lojinha!</h3>
+      <p>Explore nossa vitrine online e encontre o presente perfeito para quem você ama.</p>
+      <a href="vitrine.html" class="btn btn-rosa btn-full">
+        <i class="fas fa-store"></i> Ver vitrine agora
+      </a>
+      <button class="popup-skip" id="popupSkip">Agora não, obrigada</button>
+    </div>
+  </div>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Visualização ampliada">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Fechar">
+      <i class="fas fa-times"></i>
+    </button>
+    <button class="lightbox-nav" id="lightboxPrev" aria-label="Anterior">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="lightbox-content" id="lightboxContent"></div>
+    <button class="lightbox-nav" id="lightboxNext" aria-label="Próximo">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <script src="script.js?v=4"></script>
 </body>
 </html>

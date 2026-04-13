@@ -1,6 +1,63 @@
 // ============================================================
-// NA LOJINHA — SCRIPT.JS
+// NA LOJINHA — SCRIPT.JS v4
 // ============================================================
+
+// ===== LOADING SCREEN =====
+(function iniciarLoadingScreen() {
+  const screen = document.getElementById('loadingScreen');
+  if (!screen) return;
+
+  // Verificar barra de anúncio no início (antes do loading sumir)
+  if (sessionStorage.getItem('barDismissed')) {
+    document.body.classList.remove('has-bar');
+    const bar = document.getElementById('announcementBar');
+    if (bar) bar.style.display = 'none';
+  }
+
+  // Verificar dark mode salvo
+  if (localStorage.getItem('darkMode') === 'on') {
+    document.documentElement.classList.add('dark');
+    const icon = document.getElementById('darkIcon');
+    if (icon) { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); }
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      screen.classList.add('oculto');
+      screen.addEventListener('transitionend', () => screen.remove(), { once: true });
+    }, 800);
+  });
+})();
+
+// ===== ANNOUNCEMENT BAR =====
+(function iniciarAnnouncementBar() {
+  const bar   = document.getElementById('announcementBar');
+  const close = document.getElementById('announcementClose');
+  if (!bar || !close) return;
+
+  close.addEventListener('click', () => {
+    bar.classList.add('dismissing');
+    setTimeout(() => {
+      bar.style.display = 'none';
+      document.body.classList.remove('has-bar');
+    }, 360);
+    sessionStorage.setItem('barDismissed', '1');
+  });
+})();
+
+// ===== DARK MODE =====
+(function iniciarDarkMode() {
+  const btn  = document.getElementById('darkToggle');
+  const icon = document.getElementById('darkIcon');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    icon.classList.toggle('fa-moon', !isDark);
+    icon.classList.toggle('fa-sun',  isDark);
+    localStorage.setItem('darkMode', isDark ? 'on' : 'off');
+  });
+})();
 
 // ===== MENU MOBILE =====
 const hamburger = document.getElementById('hamburger');
@@ -26,14 +83,13 @@ if (hamburger && mobileNav) {
 
 // ===== HEADER SCROLL =====
 const header = document.getElementById('header');
-
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive: true });
 
 // ===== NAV LINK ATIVO =====
-const sections    = document.querySelectorAll('section[id]');
-const navLinks    = document.querySelectorAll('.desktop-nav a');
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.desktop-nav a');
 
 window.addEventListener('scroll', () => {
   let current = '';
@@ -42,29 +98,212 @@ window.addEventListener('scroll', () => {
       current = section.getAttribute('id');
     }
   });
-
   navLinks.forEach(link => {
     link.classList.toggle('ativo', link.getAttribute('href') === '#' + current);
   });
 }, { passive: true });
 
-// ============================================================
-// BARRA DE PROGRESSO DE SCROLL
-// ============================================================
+// ===== BARRA DE PROGRESSO =====
 const progressBar = document.createElement('div');
 progressBar.id = 'scroll-progress';
 document.body.prepend(progressBar);
 
 window.addEventListener('scroll', () => {
-  const scrollTop  = window.scrollY;
-  const docHeight  = document.documentElement.scrollHeight - window.innerHeight;
-  const pct        = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
   progressBar.style.width = pct + '%';
 }, { passive: true });
 
-// ============================================================
-// SPARKLES NO HERO
-// ============================================================
+// ===== BACK TO TOP =====
+(function iniciarBtnTopo() {
+  const btn = document.getElementById('btnTopo');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visivel', window.scrollY > 400);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// ===== CURSOR PERSONALIZADO =====
+(function iniciarCursor() {
+  if (window.innerWidth < 1024 || !window.matchMedia('(pointer: fine)').matches) return;
+
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+
+  let ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+  });
+
+  function animarRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+    requestAnimationFrame(animarRing);
+  }
+  animarRing();
+
+  document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('expandido'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('expandido'));
+  });
+})();
+
+// ===== POPUP BOAS-VINDAS =====
+(function iniciarPopup() {
+  const overlay = document.getElementById('popupOverlay');
+  const closeBtn = document.getElementById('popupClose');
+  const skipBtn  = document.getElementById('popupSkip');
+  if (!overlay) return;
+
+  if (sessionStorage.getItem('popupVisto')) return;
+
+  const fechar = () => {
+    overlay.classList.remove('ativo');
+    sessionStorage.setItem('popupVisto', '1');
+  };
+
+  setTimeout(() => { overlay.classList.add('ativo'); }, 4000);
+
+  if (closeBtn) closeBtn.addEventListener('click', fechar);
+  if (skipBtn)  skipBtn.addEventListener('click', fechar);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) fechar();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('ativo')) fechar();
+  });
+})();
+
+// ===== LIGHTBOX =====
+(function iniciarLightbox() {
+  const overlay = document.getElementById('lightboxOverlay');
+  const content = document.getElementById('lightboxContent');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn  = document.getElementById('lightboxPrev');
+  const nextBtn  = document.getElementById('lightboxNext');
+  if (!overlay || !content) return;
+
+  const itens = [...document.querySelectorAll('.galeria-item[data-lb-icon]')];
+  let atual = 0;
+
+  const renderItem = (idx) => {
+    const item   = itens[idx];
+    const icon   = item.dataset.lbIcon   || 'fas fa-image';
+    const label  = item.dataset.lbLabel  || '';
+    const sub    = `Item ${idx + 1} de ${itens.length}`;
+    content.innerHTML = `
+      <div class="lb-icon"><i class="${icon}"></i></div>
+      <div class="lb-label">${label}</div>
+      <div class="lb-sub">${sub}</div>
+    `;
+  };
+
+  const abrir = (idx) => {
+    atual = ((idx % itens.length) + itens.length) % itens.length;
+    renderItem(atual);
+    overlay.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const fechar = () => {
+    overlay.classList.remove('ativo');
+    document.body.style.overflow = '';
+  };
+
+  itens.forEach((item, idx) => {
+    item.addEventListener('click', () => abrir(idx));
+    item.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') abrir(idx); });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', fechar);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) fechar(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { atual--; abrir(atual); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { atual++; abrir(atual); });
+
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('ativo')) return;
+    if (e.key === 'Escape')      fechar();
+    if (e.key === 'ArrowLeft')   { atual--; abrir(atual); }
+    if (e.key === 'ArrowRight')  { atual++; abrir(atual); }
+  });
+})();
+
+// ===== FAQ ACCORDION =====
+(function iniciarFaq() {
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item    = btn.closest('.faq-item');
+      const aberto  = item.classList.contains('ativo');
+
+      // Fechar todos
+      document.querySelectorAll('.faq-item.ativo').forEach(i => {
+        i.classList.remove('ativo');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        i.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+      });
+
+      // Abrir clicado (se estava fechado)
+      if (!aberto) {
+        item.classList.add('ativo');
+        btn.setAttribute('aria-expanded', 'true');
+        item.querySelector('.faq-answer').setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+})();
+
+// ===== FORMULÁRIO DE CONTATO (envia via WhatsApp) =====
+function enviarFormulario(e) {
+  e.preventDefault();
+  const nome     = document.getElementById('fNome')?.value.trim()     || '';
+  const whatsapp = document.getElementById('fWhatsapp')?.value.trim() || '';
+  const email    = document.getElementById('fEmail')?.value.trim()    || '';
+  const assunto  = document.getElementById('fAssunto')?.value         || 'Contato';
+  const mensagem = document.getElementById('fMensagem')?.value.trim() || '';
+
+  if (!nome || !mensagem) {
+    alert('Por favor, preencha seu nome e a mensagem.');
+    return;
+  }
+
+  const linhas = [
+    `Olá! Vim pelo site da Na Lojinha 🎁`,
+    ``,
+    `*Nome:* ${nome}`,
+    whatsapp ? `*WhatsApp:* ${whatsapp}` : '',
+    email    ? `*E-mail:* ${email}`      : '',
+    `*Assunto:* ${assunto}`,
+    ``,
+    `*Mensagem:*`,
+    mensagem,
+  ].filter(l => l !== undefined && !(l === '' && !whatsapp && !email));
+
+  const texto = encodeURIComponent(linhas.join('\n'));
+  window.open(`https://wa.me/5515997333376?text=${texto}`, '_blank', 'noopener,noreferrer');
+}
+
+// Vincular o form ao submit
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  if (form) form.addEventListener('submit', enviarFormulario);
+});
+
+// ===== SPARKLES NO HERO =====
 function criarSparkles() {
   const heroShapes = document.querySelector('.hero-shapes');
   if (!heroShapes) return;
@@ -84,24 +323,17 @@ function criarSparkles() {
     el.className   = 'sparkle' + (cfg.cor === 'teal' ? ' sparkle-teal' : '');
     el.textContent = '✦';
     el.style.cssText = `
-      top: ${cfg.top};
-      left: ${cfg.left};
-      --size: ${cfg.size};
-      --dur: ${cfg.dur};
-      --delay: ${cfg.delay};
+      top: ${cfg.top}; left: ${cfg.left};
+      --size: ${cfg.size}; --dur: ${cfg.dur}; --delay: ${cfg.delay};
       font-size: ${cfg.size};
     `;
     heroShapes.appendChild(el);
   });
 }
-
 criarSparkles();
 
-// ============================================================
-// REVEAL AO SCROLL (data-reveal)
-// ============================================================
+// ===== REVEAL AO SCROLL =====
 function configurarReveal() {
-  // Mapear elementos para data-reveal automático
   const mapeamento = [
     { seletor: '.section-header',     dir: 'up'    },
     { seletor: '.mvv-card',           dir: 'up'    },
@@ -115,30 +347,27 @@ function configurarReveal() {
     { seletor: '.contato-info',       dir: 'left'  },
     { seletor: '.contato-mapa',       dir: 'right' },
     { seletor: '.info-item',          dir: 'left'  },
+    { seletor: '.categoria-card',     dir: 'up'    },
+    { seletor: '.faq-item',           dir: 'up'    },
+    { seletor: '.insta-post',         dir: 'scale' },
+    { seletor: '.contato-form-wrap',  dir: 'up'    },
   ];
 
   mapeamento.forEach(({ seletor, dir }) => {
     document.querySelectorAll(seletor).forEach(el => {
-      if (!el.hasAttribute('data-reveal')) {
-        el.setAttribute('data-reveal', dir);
-      }
+      if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', dir);
     });
   });
 
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, idx) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Stagger por grupo: delay baseado na posição no DOM
         const siblings = entry.target.parentElement
           ? [...entry.target.parentElement.children].filter(c => c.hasAttribute('data-reveal'))
           : [];
-        const pos = siblings.indexOf(entry.target);
+        const pos   = siblings.indexOf(entry.target);
         const delay = pos >= 0 ? pos * 80 : 0;
-
-        setTimeout(() => {
-          entry.target.classList.add('revealed');
-        }, delay);
-
+        setTimeout(() => entry.target.classList.add('revealed'), delay);
         revealObserver.unobserve(entry.target);
       }
     });
@@ -146,12 +375,9 @@ function configurarReveal() {
 
   document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
 }
-
 configurarReveal();
 
-// ============================================================
-// ANIMAÇÃO DOS NÚMEROS (contador)
-// ============================================================
+// ===== CONTADORES =====
 function animarContadores() {
   const numeros = document.querySelectorAll('.numero');
   if (!numeros.length) return;
@@ -161,51 +387,36 @@ function animarContadores() {
       if (!entry.isIntersecting) return;
       counterObserver.unobserve(entry.target);
 
-      const el       = entry.target;
+      const el      = entry.target;
       const textoFim = el.textContent.trim();
-
-      // Extrair número e sufixo
-      const match = textoFim.match(/^(\d[\d.,]*)(.*)$/);
-      if (!match) return; // Ex: "∞" não é número, pular
+      const match   = textoFim.match(/^(\d[\d.,]*)(.*)$/);
+      if (!match) return;
 
       const numFim  = parseFloat(match[1].replace(',', '.'));
       const sufixo  = match[2];
-      const duracao = 1600; // ms
+      const duracao = 1600;
       const inicio  = performance.now();
 
       function tick(agora) {
         const progresso = Math.min((agora - inicio) / duracao, 1);
-        const ease      = 1 - Math.pow(1 - progresso, 3); // easeOutCubic
+        const ease      = 1 - Math.pow(1 - progresso, 3);
         const atual     = Math.round(ease * numFim);
-
-        // Formatar igual ao original
-        if (match[1].includes('.') && numFim > 999) {
-          el.textContent = atual.toLocaleString('pt-BR') + sufixo;
-        } else {
-          el.textContent = atual + sufixo;
-        }
-
-        if (progresso < 1) {
-          requestAnimationFrame(tick);
-        } else {
-          el.textContent = textoFim; // garantir valor exato no final
-        }
+        el.textContent  = (match[1].includes('.') && numFim > 999)
+          ? atual.toLocaleString('pt-BR') + sufixo
+          : atual + sufixo;
+        if (progresso < 1) requestAnimationFrame(tick);
+        else el.textContent = textoFim;
       }
-
       requestAnimationFrame(tick);
     });
   }, { threshold: 0.5 });
 
   numeros.forEach(el => counterObserver.observe(el));
 }
-
 animarContadores();
 
-// ============================================================
-// SECTION TAGS — ANIMAÇÃO DE ENTRADA
-// ============================================================
+// ===== SECTION TAGS =====
 function animarSectionTags() {
-  const tags = document.querySelectorAll('.section-tag');
   const tagObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -215,26 +426,21 @@ function animarSectionTags() {
     });
   }, { threshold: 0.8 });
 
-  tags.forEach(tag => {
+  document.querySelectorAll('.section-tag').forEach(tag => {
     tag.style.opacity = '0';
     tagObserver.observe(tag);
   });
 }
-
 animarSectionTags();
 
-// ============================================================
-// VITRINE BANNER — PARALLAX LEVE AO MOUSE
-// ============================================================
+// ===== VITRINE BANNER — PARALLAX =====
 const vitrineBanner = document.querySelector('.vitrine-banner');
 if (vitrineBanner) {
   vitrineBanner.addEventListener('mousemove', (e) => {
-    const rect   = vitrineBanner.getBoundingClientRect();
-    const cx     = (e.clientX - rect.left) / rect.width  - 0.5;
-    const cy     = (e.clientY - rect.top)  / rect.height - 0.5;
-    const icons  = vitrineBanner.querySelectorAll('.vb-icon');
-
-    icons.forEach((icon, i) => {
+    const rect  = vitrineBanner.getBoundingClientRect();
+    const cx    = (e.clientX - rect.left) / rect.width  - 0.5;
+    const cy    = (e.clientY - rect.top)  / rect.height - 0.5;
+    vitrineBanner.querySelectorAll('.vb-icon').forEach((icon, i) => {
       const fator = (i % 2 === 0) ? 10 : -8;
       icon.style.transform = `translate(${cx * fator}px, ${cy * fator}px) scale(1.05)`;
     });
@@ -247,22 +453,15 @@ if (vitrineBanner) {
   });
 }
 
-// ============================================================
-// CURSOR GLOW SUAVE NO HERO
-// ============================================================
+// ===== CURSOR GLOW NO HERO =====
 const heroSection = document.querySelector('.hero');
 if (heroSection && window.innerWidth >= 1024) {
   const glow = document.createElement('div');
   glow.style.cssText = `
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(212,20,114,0.07) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    transform: translate(-50%, -50%);
-    transition: left 0.4s ease, top 0.4s ease;
+    position:absolute; width:400px; height:400px; border-radius:50%;
+    background:radial-gradient(circle,rgba(212,20,114,0.07) 0%,transparent 70%);
+    pointer-events:none; z-index:0; transform:translate(-50%,-50%);
+    transition:left 0.4s ease,top 0.4s ease;
   `;
   heroSection.appendChild(glow);
 
@@ -273,12 +472,9 @@ if (heroSection && window.innerWidth >= 1024) {
   });
 }
 
-// ============================================================
-// HERO CARDS — restaurar float após entrada
-// ============================================================
+// ===== HERO CARDS — restaurar float =====
 setTimeout(() => {
-  const heroCards = document.querySelectorAll('.hero-card');
-  heroCards.forEach((card, i) => {
+  document.querySelectorAll('.hero-card').forEach(card => {
     card.style.animation = '';
     card.style.opacity   = '1';
     card.style.transform = '';
