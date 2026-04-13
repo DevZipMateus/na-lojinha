@@ -1123,7 +1123,7 @@ header.scrolled {
   transform: scale(1.08);
 }
 
-/* ===== FADE IN ===== */
+/* ===== FADE IN (legado) ===== */
 .fade-in {
   opacity: 0;
   transform: translateY(22px);
@@ -1133,6 +1133,267 @@ header.scrolled {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ============================================================
+   EFEITOS & ANIMAÇÕES
+   ============================================================ */
+
+/* ===== KEYFRAMES ===== */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatGroup {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes sparkleAnim {
+  0%        { opacity: 0; transform: scale(0) rotate(0deg); }
+  25%       { opacity: 1; transform: scale(1.1) rotate(60deg); }
+  75%       { opacity: 0.7; transform: scale(0.9) rotate(150deg); }
+  100%      { opacity: 0; transform: scale(0) rotate(220deg); }
+}
+
+@keyframes shimmer {
+  from { transform: translateX(-100%) skewX(-15deg); }
+  to   { transform: translateX(260%) skewX(-15deg); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseRing {
+  0%   { box-shadow: 0 4px 16px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.5); }
+  70%  { box-shadow: 0 4px 16px rgba(37,211,102,0.45), 0 0 0 14px rgba(37,211,102,0); }
+  100% { box-shadow: 0 4px 16px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0); }
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(36px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealLeft {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes revealRight {
+  from { opacity: 0; transform: translateX(36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes tagPop {
+  0%   { opacity: 0; transform: translateY(-8px) scale(0.9); }
+  60%  { transform: translateY(2px) scale(1.03); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,20,114,0); }
+  50%       { box-shadow: 0 0 16px 2px rgba(212,20,114,0.2); }
+}
+
+/* ===== BARRA DE PROGRESSO DE SCROLL ===== */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--rosa) 0%, var(--teal) 100%);
+  z-index: 2001;
+  transition: width 0.12s linear;
+  pointer-events: none;
+}
+
+/* ===== HERO — ANIMAÇÕES DE ENTRADA ===== */
+.hero-tag         { animation: tagPop     0.6s ease 0.1s both; }
+.hero h1          { animation: fadeSlideUp 0.7s ease 0.15s both; }
+.hero h2          { animation: fadeSlideUp 0.7s ease 0.3s  both; }
+.hero-desc        { animation: fadeSlideUp 0.7s ease 0.45s both; }
+.hero-btns        { animation: fadeSlideUp 0.7s ease 0.6s  both; }
+.hero-info        { animation: fadeSlideUp 0.7s ease 0.75s both; }
+
+/* Hero visual flutuando como grupo */
+.hero-visual {
+  animation: floatGroup 5s ease-in-out infinite;
+}
+
+/* Cada card entra com delay diferente */
+.hero-card:nth-child(1) { animation: revealRight 0.7s ease 0.5s both; }
+.hero-card:nth-child(2) { animation: revealRight 0.7s ease 0.65s both; }
+.hero-card:nth-child(3) { animation: revealRight 0.7s ease 0.8s both; }
+
+/* Após entrar, reaplicar float no grupo (JS remove a classe hero-entering) */
+
+/* ===== SPARKLES ===== */
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  animation: sparkleAnim var(--dur, 3s) ease-in-out var(--delay, 0s) infinite;
+  color: var(--rosa);
+  font-size: var(--size, 1rem);
+  opacity: 0;
+}
+
+.sparkle-teal { color: var(--teal); }
+
+/* ===== REVEAL AO SCROLL ===== */
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+[data-reveal="up"]    { transform: translateY(36px); }
+[data-reveal="left"]  { transform: translateX(-36px); }
+[data-reveal="right"] { transform: translateX(36px); }
+[data-reveal="scale"] { transform: scale(0.92); }
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== CARD SHINE (brilho no hover) ===== */
+.produto-card,
+.mvv-card,
+.depoimento-card,
+.step-card,
+.hero-card {
+  overflow: hidden;
+}
+
+.produto-card::before,
+.mvv-card::before,
+.depoimento-card::before,
+.step-card::before,
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.3) 50%,
+    transparent 100%
+  );
+  transform: skewX(-15deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.produto-card:hover::before,
+.mvv-card:hover::before,
+.depoimento-card:hover::before,
+.step-card:hover::before,
+.hero-card:hover::before {
+  animation: shimmer 0.6s ease forwards;
+}
+
+/* ===== VITRINE BANNER — GRADIENTE ANIMADO ===== */
+.vitrine-banner {
+  background: linear-gradient(135deg, var(--rosa) 0%, #B81060 40%, #9B0E56 70%, var(--rosa) 100%) !important;
+  background-size: 300% 300% !important;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* ===== WHATSAPP FLOAT — PULSO ===== */
+.whatsapp-float {
+  animation: pulseRing 3s ease-in-out infinite;
+}
+
+.whatsapp-float:hover {
+  animation: none;
+  transform: scale(1.1);
+}
+
+/* ===== SECTION HEADER — ENTRADA ===== */
+.section-header .section-tag { transition: none; }
+
+/* ===== NÚMERO CARD HOVER ===== */
+.numero-card {
+  transition: transform var(--transicao);
+}
+
+.numero-card:hover {
+  transform: translateY(-4px);
+}
+
+.numero-card:hover .numero {
+  animation: borderGlow 1s ease;
+}
+
+/* ===== INFO ITEM SLIDE ===== */
+.info-item {
+  transition: transform var(--transicao);
+}
+
+.info-item:hover {
+  transform: translateX(6px);
+}
+
+/* ===== STEP CONNECTOR ===== */
+.steps-grid {
+  position: relative;
+}
+
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 108px;
+  left: calc(33.33% - 12px);
+  right: calc(33.33% - 12px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--rosa-claro), var(--rosa), var(--teal), var(--teal-claro));
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ===== GALERIA OVERLAY ===== */
+.galeria-item {
+  transition: transform var(--transicao), filter var(--transicao);
+}
+
+.galeria-item:hover {
+  filter: brightness(1.08) saturate(1.1);
+}
+
+/* ===== PRODUTO CARD — ÍCONE ROTAÇÃO ===== */
+.produto-card:hover .produto-icon i {
+  transform: rotate(-10deg) scale(1.15);
+  transition: transform 0.3s ease;
+}
+
+/* ===== @prefers-reduced-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  #scroll-progress { transition: none; }
+}
+
+/* Desativar float e sparkles em mobile */
+@media (max-width: 1023px) {
+  .hero-visual { animation: none; }
+  .steps-grid::before { display: none; }
+  .sparkle { display: none; }
 }
 
 /* ===== VITRINE BANNER SECTION ===== */
