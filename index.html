@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Na Lojinha — presentes e itens personalizados em Mairinque/SP. Transformamos pequenos gestos em grandes lembranças com carinho e qualidade.">
+  <meta name="keywords" content="presentes personalizados, lembranças, decoração, Na Lojinha, Mairinque, SP">
+  <meta name="author" content="Na Lojinha">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="pt-BR">
+  <meta name="theme-color" content="#D41472">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Na Lojinha — Presentes e Itens Personalizados">
+  <meta property="og:description" content="Transformamos pequenos gestos em grandes lembranças. Presentes e itens personalizados em Mairinque/SP.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nalojinha.com.br/">
+  <meta property="og:image" content="https://nalojinha.com.br/images/og-image.png">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Na Lojinha — Presentes e Itens Personalizados">
+  <meta name="twitter:description" content="Transformamos pequenos gestos em grandes lembranças. Presentes e itens personalizados em Mairinque/SP.">
+  <meta name="twitter:image" content="https://nalojinha.com.br/images/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css?v=1">
+  <title>Na Lojinha</title>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="#inicio" class="logo-link" aria-label="Na Lojinha — Página inicial">
+        <img src="images/logo.png" alt="Na Lojinha" class="logo"
+          onerror="this.style.display='none';document.getElementById('logoTexto').style.display='block'">
+        <span class="logo-texto" id="logoTexto" style="display:none">Na Lojinha</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#personalizacao">Personalização</a></li>
+          <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MENU MOBILE (irmão do header) ===== -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile" aria-hidden="true">
+    <ul>
+      <li><a href="#inicio" class="nav-link">Início</a></li>
+      <li><a href="#sobre" class="nav-link">Sobre</a></li>
+      <li><a href="#produtos" class="nav-link">Produtos</a></li>
+      <li><a href="#personalizacao" class="nav-link">Personalização</a></li>
+      <li><a href="#galeria" class="nav-link">Galeria</a></li>
+      <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+      <li><a href="#contato" class="nav-link">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="inicio" class="hero">
+    <div class="hero-shapes" aria-hidden="true">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="section-tag hero-tag">Bem-vinda à</span>
+        <h1>Na Lojinha</h1>
+        <h2>Presentes e lembranças que aquecem corações</h2>
+        <p class="hero-desc">Um cantinho especial onde cada produto é escolhido com carinho para tornar seus momentos ainda mais inesquecíveis.</p>
+        <div class="hero-btns">
+          <a href="https://wa.me/5515997333376" class="btn btn-rosa" aria-label="Falar no WhatsApp">
+            <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+          </a>
+          <a href="#produtos" class="btn btn-outline">
+            Ver produtos <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="hero-info">
+          <span><i class="fas fa-map-marker-alt"></i> Mairinque, SP</span>
+          <span><i class="fas fa-clock"></i> Seg–Sex 9h–18h · Sáb 9h–12h</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <div class="hero-card-icon"><i class="fas fa-gift"></i></div>
+          <span>Presentes especiais</span>
+        </div>
+        <div class="hero-card hero-card-2">
+          <div class="hero-card-icon hero-card-icon-teal"><i class="fas fa-heart"></i></div>
+          <span>Feito com carinho</span>
+        </div>
+        <div class="hero-card hero-card-3">
+          <div class="hero-card-icon"><i class="fas fa-magic"></i></div>
+          <span>Personalizado para você</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre" class="section sobre-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Quem somos</span>
+        <h2>Nossa história</h2>
+        <p>Nascemos de um sonho simples: transformar pequenos gestos em grandes demonstrações de carinho</p>
+      </div>
+
+      <div class="mvv-grid">
+        <div class="mvv-card">
+          <div class="mvv-icon"><i class="fas fa-bullseye"></i></div>
+          <h3>Missão</h3>
+          <p>Proporcionar alegria e emoção através de presentes e itens personalizados, oferecendo produtos de qualidade que tornam momentos simples em lembranças especiais.</p>
+        </div>
+        <div class="mvv-card mvv-destaque">
+          <div class="mvv-icon"><i class="fas fa-eye"></i></div>
+          <h3>Visão</h3>
+          <p>Ser referência em Mairinque e região no segmento de presentes e decoração, reconhecida pelo carinho no atendimento, criatividade e excelência nos produtos.</p>
+        </div>
+        <div class="mvv-card">
+          <div class="mvv-icon"><i class="fas fa-heart"></i></div>
+          <h3>Valores</h3>
+          <ul class="valores-list">
+            <li>Atendimento com carinho e atenção</li>
+            <li>Qualidade e capricho em cada produto</li>
+            <li>Criatividade e personalização</li>
+            <li>Compromisso e responsabilidade</li>
+            <li>Ética e transparência</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="historia-block">
+        <div class="historia-texto">
+          <h3>Como tudo começou</h3>
+          <p>A Na Lojinha nasceu em Mairinque, de um sonho simples: transformar pequenos gestos em grandes demonstrações de carinho 💝</p>
+          <p>Com dedicação e amor em cada detalhe, a ideia cresceu e hoje, em 2026, se torna realidade com a inauguração da nossa loja — um cantinho feito para aquecer corações ✨</p>
+        </div>
+        <div class="historia-numeros">
+          <div class="numero-card">
+            <span class="numero">2026</span>
+            <span class="numero-label">Ano de abertura</span>
+          </div>
+          <div class="numero-card">
+            <span class="numero">100%</span>
+            <span class="numero-label">Feito com amor</span>
+          </div>
+          <div class="numero-card">
+            <span class="numero">∞</span>
+            <span class="numero-label">Momentos especiais</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUTOS ===== -->
+  <section id="produtos" class="section produtos-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">O que oferecemos</span>
+        <h2>Nossos produtos</h2>
+        <p>Uma seleção cuidadosa de itens para você presentear com muito estilo e carinho</p>
+      </div>
+
+      <div class="produtos-grid">
+        <div class="produto-card">
+          <div class="produto-icon"><i class="fas fa-gift"></i></div>
+          <h3>Presentes especiais</h3>
+          <p>Itens cuidadosamente selecionados para surpreender quem você ama em qualquer ocasião.</p>
+        </div>
+        <div class="produto-card">
+          <div class="produto-icon produto-icon-teal"><i class="fas fa-pen-fancy"></i></div>
+          <h3>Itens personalizados</h3>
+          <p>Produtos exclusivos com nome, foto ou mensagem especial — únicos, como quem vai receber.</p>
+        </div>
+        <div class="produto-card">
+          <div class="produto-icon"><i class="fas fa-home"></i></div>
+          <h3>Decoração</h3>
+          <p>Peças charmosas para embelezar e personalizar qualquer ambiente com muito estilo.</p>
+        </div>
+        <div class="produto-card">
+          <div class="produto-icon produto-icon-teal"><i class="fas fa-ribbon"></i></div>
+          <h3>Lembranças</h3>
+          <p>Recordações especiais para guardar para sempre os momentos mais bonitos da vida.</p>
+        </div>
+        <div class="produto-card">
+          <div class="produto-icon"><i class="fas fa-birthday-cake"></i></div>
+          <h3>Datas comemorativas</h3>
+          <p>Opções perfeitas para aniversários, Natal, Dia das Mães, Páscoa e muito mais.</p>
+        </div>
+        <div class="produto-card">
+          <div class="produto-icon produto-icon-teal"><i class="fas fa-box-open"></i></div>
+          <h3>Kits e cestas</h3>
+          <p>Combinações especialmente montadas para encantar e surpreender em grande estilo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PERSONALIZAÇÃO ===== -->
+  <section id="personalizacao" class="section personalizacao-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Feito pra você</span>
+        <h2>Como funciona a personalização</h2>
+        <p>Simples, rápido e cheio de carinho — criar algo único nunca foi tão fácil</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-numero">01</div>
+          <div class="step-icon"><i class="fas fa-search"></i></div>
+          <h3>Escolha o produto</h3>
+          <p>Navegue pela nossa vitrine e encontre o item ideal para a pessoa especial que você quer surpreender.</p>
+        </div>
+        <div class="step-card step-card-destaque">
+          <div class="step-numero">02</div>
+          <div class="step-icon step-icon-teal"><i class="fas fa-magic"></i></div>
+          <h3>Personalize como quiser</h3>
+          <p>Adicione nome, foto, mensagem ou qualquer detalhe que torne o presente único e inesquecível.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-numero">03</div>
+          <div class="step-icon"><i class="fas fa-heart"></i></div>
+          <h3>Receba com carinho</h3>
+          <p>Seu produto é preparado com todo o cuidado e amor da Na Lojinha para chegar perfeito até você.</p>
+        </div>
+      </div>
+
+      <div class="personalizacao-cta">
+        <div class="personalizacao-cta-inner">
+          <div>
+            <h3>Quer personalizar algo especial?</h3>
+            <p>Fale com a gente pelo WhatsApp e vamos criar algo único juntos!</p>
+          </div>
+          <a href="https://wa.me/5515997333376?text=Olá!%20Quero%20personalizar%20um%20produto%20da%20Na%20Lojinha%20🎁" class="btn btn-rosa">
+            <i class="fab fa-whatsapp"></i> Falar com a gente
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERIA ===== -->
+  <section id="galeria" class="section galeria-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nossa vitrine</span>
+        <h2>Galeria de produtos</h2>
+        <p>Conheça alguns dos nossos produtos e inspire-se para o próximo presente</p>
+      </div>
+
+      <div class="galeria-grid">
+        <div class="galeria-item gi-rosa">
+          <i class="fas fa-gift"></i>
+          <span>Presentes</span>
+        </div>
+        <div class="galeria-item gi-teal">
+          <i class="fas fa-pen-fancy"></i>
+          <span>Personalizados</span>
+        </div>
+        <div class="galeria-item gi-rosa-claro">
+          <i class="fas fa-home"></i>
+          <span>Decoração</span>
+        </div>
+        <div class="galeria-item gi-teal-claro">
+          <i class="fas fa-ribbon"></i>
+          <span>Lembranças</span>
+        </div>
+        <div class="galeria-item gi-rosa">
+          <i class="fas fa-birthday-cake"></i>
+          <span>Datas especiais</span>
+        </div>
+        <div class="galeria-item gi-teal">
+          <i class="fas fa-box-open"></i>
+          <span>Kits</span>
+        </div>
+      </div>
+
+      <p class="galeria-nota">📸 Fotos dos produtos em breve — acompanhe nossas novidades!</p>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section id="depoimentos" class="section depoimentos-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">O que dizem</span>
+        <h2>Depoimentos</h2>
+        <p>A satisfação dos nossos clientes é a nossa maior recompensa</p>
+      </div>
+
+      <div class="depoimentos-grid">
+        <div class="depoimento-card">
+          <div class="depoimento-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p>"Comprei um presente personalizado para minha mãe e ela amou! Produto lindo e atendimento super cuidadoso. Recomendo muito!"</p>
+          <div class="depoimento-autor">
+            <div class="autor-avatar">C</div>
+            <span>Carla M.</span>
+          </div>
+        </div>
+        <div class="depoimento-card depoimento-destaque">
+          <div class="depoimento-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p>"Fui procurar uma lembrança para minha namorada e encontrei exatamente o que precisava. A loja é encantadora e os produtos são de ótima qualidade."</p>
+          <div class="depoimento-autor">
+            <div class="autor-avatar autor-teal">J</div>
+            <span>João P.</span>
+          </div>
+        </div>
+        <div class="depoimento-card">
+          <div class="depoimento-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p>"Adorei o atendimento! Me ajudaram a escolher o presente perfeito para o aniversário da minha filha. Com certeza voltarei!"</p>
+          <div class="depoimento-autor">
+            <div class="autor-avatar">F</div>
+            <span>Fernanda S.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTATO ===== -->
+  <section id="contato" class="section contato-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Fale conosco</span>
+        <h2>Entre em contato</h2>
+        <p>Estamos prontas para te atender com todo o carinho que você merece</p>
+      </div>
+
+      <div class="contato-grid">
+        <div class="contato-info">
+          <div class="info-item">
+            <div class="info-icon info-icon-rosa"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <h3>WhatsApp</h3>
+              <a href="https://wa.me/5515997333376">(15) 9973-3376</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon info-icon-teal"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h3>E-mail</h3>
+              <span>nadiacbueno@icloud.com</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon info-icon-rosa"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h3>Endereço</h3>
+              <p>Focus Centro Comercial Mk<br>
+              Rua Dr. Paulo Ferraz Braga, Nº 23, Loja 12<br>
+              Centro — Mairinque/SP</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon info-icon-teal"><i class="fas fa-clock"></i></div>
+            <div>
+              <h3>Horário de funcionamento</h3>
+              <p>Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 12h</p>
+            </div>
+          </div>
+
+          <a href="https://wa.me/5515997333376?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20Na%20Lojinha%20🎁" class="btn btn-rosa btn-full">
+            <i class="fab fa-whatsapp"></i> Enviar mensagem
+          </a>
+        </div>
+
+        <div class="contato-mapa">
+          <iframe
+            src="https://maps.google.com/maps?q=Rua+Dr+Paulo+Ferraz+Braga+23+Centro+Mairinque+SP&output=embed"
+            width="100%"
+            height="420"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização Na Lojinha — Mairinque/SP">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="images/logo.png" alt="Na Lojinha" class="footer-logo-img"
+          onerror="this.style.display='none';document.getElementById('footerLogoTexto').style.display='block'">
+        <span class="logo-texto footer-logo-texto" id="footerLogoTexto" style="display:none">Na Lojinha</span>
+        <p>Transformando momentos em lembranças especiais</p>
+      </div>
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#personalizacao">Personalização</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="footer-bottom">
+        <p>© 2026 Na Lojinha · CPF 361.948.778-20 · Mairinque/SP</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== RODAPÉ MONTESITE ===== -->
+  <div id="montesite-footer-badge"></div>
+  <script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
+
+  <!-- ===== WHATSAPP FLUTUANTE ===== -->
+  <a href="https://wa.me/5515997333376"
+     class="whatsapp-float"
+     aria-label="Falar no WhatsApp"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="script.js?v=1"></script>
+</body>
+</html>

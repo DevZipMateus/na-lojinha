@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nalojinha.com.br/sitemap.xml
