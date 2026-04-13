@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Vitrine Na Lojinha — confira nosso catálogo completo de presentes e itens personalizados online.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#D41472">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="apple-touch-icon" href="images/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css?v=2">
+
+  <style>
+    /* ===== RESET TOTAL DA PÁGINA ===== */
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+      -webkit-overflow-scrolling: auto;
+      touch-action: none;
+    }
+
+    @supports (height: 100dvh) {
+      html, body { height: 100dvh; }
+    }
+
+    /* ===== HEADER FIXO — 80px ===== */
+    :root { --header-height: 80px; }
+
+    header { height: 80px; }
+
+    /* ===== IFRAME PRINCIPAL ===== */
+    .vitrine-iframe {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 80px - 63px);
+      border: none;
+      display: block;
+      z-index: 1;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    @supports (height: 100dvh) {
+      .vitrine-iframe {
+        height: calc(100dvh - 80px - 63px);
+      }
+    }
+
+    /* Safe area — iPhone com notch / Dynamic Island */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      .vitrine-iframe {
+        height: calc(100vh - 80px - 63px - env(safe-area-inset-bottom));
+      }
+      @supports (height: 100dvh) {
+        .vitrine-iframe {
+          height: calc(100dvh - 80px - 63px - env(safe-area-inset-bottom));
+        }
+      }
+      .vitrine-badge-wrap {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    }
+
+    /* ===== BADGE INFERIOR FIXO ===== */
+    .vitrine-badge-wrap {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: var(--texto);
+    }
+
+    /* ===== BOTÃO VOLTAR ===== */
+    .btn-voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      background: transparent;
+      border: 2px solid var(--rosa);
+      color: var(--rosa);
+      border-radius: 50px;
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all var(--transicao);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .btn-voltar:hover {
+      background: var(--rosa);
+      color: var(--branco);
+    }
+
+    @media (max-width: 480px) {
+      .btn-voltar span { display: none; }
+      .btn-voltar { padding: 7px 11px; }
+    }
+
+    /* ===== NAV VITRINE ATIVA ===== */
+    .desktop-nav a.vitrine-ativa,
+    .mobile-nav a.vitrine-ativa {
+      color: var(--rosa);
+      font-weight: 700;
+    }
+
+    /* ===== MOBILE NAV — acima do iframe ===== */
+    .mobile-nav { z-index: 500; }
+
+    /* ===== LINK NAV VITRINE (badge) no header ===== */
+    .nav-vitrine-btn {
+      background: var(--rosa);
+      color: var(--branco) !important;
+      padding: 5px 14px !important;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      transition: background var(--transicao) !important;
+    }
+
+    .nav-vitrine-btn::after { display: none !important; }
+
+    .nav-vitrine-btn:hover {
+      background: var(--rosa-escuro) !important;
+      color: var(--branco) !important;
+    }
+  </style>
+
+  <title>Demonstração de Vitrine — Na Lojinha</title>
+</head>
+<body>
+
+  <!-- ===== HEADER FIXO ===== -->
+  <header id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link" aria-label="Na Lojinha — Voltar ao site">
+        <img src="images/logo.png" alt="Na Lojinha" class="logo"
+          onerror="this.style.display='none';document.getElementById('logoTextoVitrine').style.display='block'">
+        <span class="logo-texto" id="logoTextoVitrine" style="display:none">Na Lojinha</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html#inicio">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#produtos">Produtos</a></li>
+          <li><a href="vitrine.html" class="vitrine-ativa nav-vitrine-btn">Vitrine</a></li>
+          <li><a href="index.html#personalizacao">Personalização</a></li>
+          <li><a href="index.html#depoimentos">Depoimentos</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html" class="btn-voltar" aria-label="Voltar ao site">
+        <i class="fas fa-arrow-left"></i>
+        <span>Voltar ao site</span>
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MENU MOBILE (irmão do header) ===== -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile" aria-hidden="true">
+    <ul>
+      <li><a href="index.html#inicio" class="nav-link">Início</a></li>
+      <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+      <li><a href="index.html#produtos" class="nav-link">Produtos</a></li>
+      <li><a href="vitrine.html" class="nav-link vitrine-ativa">Vitrine</a></li>
+      <li><a href="index.html#personalizacao" class="nav-link">Personalização</a></li>
+      <li><a href="index.html#depoimentos" class="nav-link">Depoimentos</a></li>
+      <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== IFRAME DA VITRINE ===== -->
+  <iframe
+    id="vitrineFrame"
+    src="https://nalojinha.egestor.com.br/vitrine/"
+    class="vitrine-iframe"
+    title="Vitrine Na Lojinha — Catálogo online de presentes e personalizados"
+    allow="payment"
+    allowfullscreen>
+  </iframe>
+
+  <!-- ===== BADGE INFERIOR (MonteSite) ===== -->
+  <div class="vitrine-badge-wrap">
+    <div id="montesite-footer-badge"></div>
+  </div>
+  <script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
+
+  <script>
+    // ===== MENU HAMBURGER =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+        mobileNav.setAttribute('aria-hidden', !mobileNav.classList.contains('active'));
+      });
+
+      document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          mobileNav.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          mobileNav.setAttribute('aria-hidden', 'true');
+        });
+      });
+    }
+
+    // ===== AJUSTE DINÂMICO DO IFRAME =====
+    function ajustarIframe() {
+      const iframe = document.getElementById('vitrineFrame');
+      const badgeWrap = document.querySelector('.vitrine-badge-wrap');
+      if (!iframe) return;
+
+      const headerH  = 80;
+      const badgeH   = badgeWrap ? badgeWrap.offsetHeight : 63;
+      const alturaDisponivel = window.innerHeight - headerH - badgeH;
+
+      iframe.style.height = Math.max(alturaDisponivel, 200) + 'px';
+    }
+
+    ajustarIframe();
+    window.addEventListener('resize', ajustarIframe);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(ajustarIframe, 350);
+    });
+    // Reajustar após badge carregar
+    setTimeout(ajustarIframe, 800);
+    setTimeout(ajustarIframe, 2500);
+  </script>
+</body>
+</html>
