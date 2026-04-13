@@ -1059,7 +1059,7 @@ header.scrolled {
   height: 56px;
   width: auto;
   margin: 0 auto 10px;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) saturate(100%) invert(16%) sepia(92%) saturate(4200%) hue-rotate(313deg) brightness(88%);
 }
 
 .footer-logo-texto {
@@ -1550,8 +1550,18 @@ header.scrolled {
   gap: 24px;
 }
 
+.loading-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 8px 32px rgba(212, 20, 114, 0.28);
+  border: 3px solid rgba(212, 20, 114, 0.2);
+  animation: pulseRosa 2s ease-in-out infinite;
+}
+
 .loading-logo {
-  height: 80px;
+  height: 64px;
   width: auto;
   animation: pulseRosa 1.2s ease-in-out infinite;
 }
@@ -1776,46 +1786,6 @@ html.dark .categoria-card { background: #1F2937; border-color: #374151; }
 
 html.dark .instagram-section { background: #1F2937; }
 
-/* ============================================================
-   CURSOR PERSONALIZADO
-   ============================================================ */
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  display: none;
-}
-
-@media (min-width: 1024px) and (pointer: fine) {
-  body { cursor: none; }
-  a, button, [role="button"], input, select, textarea { cursor: none; }
-
-  .cursor-dot {
-    display: block;
-    width: 9px;
-    height: 9px;
-    background: var(--rosa);
-    transition: transform 0.1s ease;
-  }
-
-  .cursor-ring {
-    display: block;
-    width: 34px;
-    height: 34px;
-    border: 2px solid rgba(212, 20, 114, 0.45);
-    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
-    background: transparent;
-  }
-
-  .cursor-ring.expandido {
-    width: 48px;
-    height: 48px;
-    border-color: rgba(212, 20, 114, 0.7);
-  }
-}
 
 /* ============================================================
    BACK TO TOP
