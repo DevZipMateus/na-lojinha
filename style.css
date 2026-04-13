@@ -292,7 +292,10 @@ header.scrolled {
 .hero {
   padding-top: calc(var(--header-height) + 72px);
   padding-bottom: 88px;
-  background: linear-gradient(135deg, var(--branco) 0%, var(--rosa-fundo) 55%, #FCE9F2 100%);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.88) 0%, rgba(255,240,250,0.82) 50%, rgba(252,228,239,0.78) 100%),
+    url('images/bg-hero.jpg') center / cover no-repeat;
+  background-attachment: fixed, fixed;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -452,7 +455,12 @@ header.scrolled {
 }
 
 /* ===== SOBRE ===== */
-.sobre-section { background: var(--branco); }
+.sobre-section {
+  background:
+    linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
+    url('images/bg-sobre.jpg') center / cover no-repeat;
+  background-attachment: scroll, fixed;
+}
 
 .mvv-grid {
   display: grid;
@@ -662,7 +670,12 @@ header.scrolled {
 }
 
 /* ===== PERSONALIZAÇÃO ===== */
-.personalizacao-section { background: var(--branco); }
+.personalizacao-section {
+  background:
+    linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+    url('images/bg-personalizacao.jpg') center / cover no-repeat;
+  background-attachment: scroll, fixed;
+}
 
 .steps-grid {
   display: grid;
@@ -814,7 +827,12 @@ header.scrolled {
 }
 
 /* ===== DEPOIMENTOS ===== */
-.depoimentos-section { background: var(--branco); }
+.depoimentos-section {
+  background:
+    linear-gradient(rgba(255,255,255,0.91), rgba(255,255,255,0.91)),
+    url('images/bg-depoimentos.jpg') center / cover no-repeat;
+  background-attachment: scroll, fixed;
+}
 
 .depoimentos-grid {
   display: grid;
@@ -881,7 +899,12 @@ header.scrolled {
 }
 
 /* ===== CONTATO ===== */
-.contato-section { background: var(--rosa-fundo); }
+.contato-section {
+  background:
+    linear-gradient(rgba(255,245,250,0.93), rgba(255,245,250,0.93)),
+    url('images/bg-contato.jpg') center / cover no-repeat;
+  background-attachment: scroll, fixed;
+}
 
 .contato-grid {
   display: grid;
@@ -1094,6 +1117,15 @@ header.scrolled {
   .hamburger { display: flex; }
   .desktop-nav { display: none; }
 
+  /* Desativar parallax em tablet/mobile — bug iOS/Android */
+  .hero,
+  .sobre-section,
+  .personalizacao-section,
+  .depoimentos-section,
+  .contato-section {
+    background-attachment: scroll, scroll;
+  }
+
   .section { padding: 68px 0; }
 
   .hero-inner {
@@ -1159,6 +1191,14 @@ header.scrolled {
   .hamburger { display: flex; }
   .desktop-nav { display: none; }
 
+  .hero,
+  .sobre-section,
+  .personalizacao-section,
+  .depoimentos-section,
+  .contato-section {
+    background-attachment: scroll, scroll;
+  }
+
   .section { padding: 60px 0; }
 
   .hero-inner {
@@ -1207,6 +1247,14 @@ header.scrolled {
 @media (max-width: 599px) {
   .hamburger { display: flex; }
   .desktop-nav { display: none; }
+
+  .hero,
+  .sobre-section,
+  .personalizacao-section,
+  .depoimentos-section,
+  .contato-section {
+    background-attachment: scroll, scroll;
+  }
 
   :root { --header-height: 64px; }
 
