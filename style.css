@@ -673,64 +673,82 @@ header.scrolled {
 }
 
 .produto-card {
-  background: var(--branco);
   border-radius: var(--radius-lg);
-  padding: 36px 24px;
+  padding: 0;
   text-align: center;
-  border: 1px solid var(--borda);
+  border: none;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 260px;
+  display: flex;
+  align-items: flex-end;
   transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.produto-card-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%);
+  transition: background var(--transicao);
+}
+
+.produto-card:hover .produto-card-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 100%);
+}
+
+.produto-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 28px 20px;
+  width: 100%;
 }
 
 .produto-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--sombra-hover);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
 }
 
 .produto-icon {
-  width: 72px;
-  height: 72px;
-  background: var(--rosa-claro);
+  width: 60px;
+  height: 60px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 22px;
+  margin: 0 auto 16px;
   transition: background var(--transicao);
+  border: 1px solid rgba(255,255,255,0.25);
 }
 
 .produto-icon i {
-  font-size: 1.7rem;
-  color: var(--rosa);
+  font-size: 1.5rem;
+  color: #fff;
   transition: color var(--transicao);
 }
 
 .produto-card:hover .produto-icon {
   background: var(--rosa);
+  border-color: var(--rosa);
 }
 
-.produto-card:hover .produto-icon i { color: var(--branco); }
-
-.produto-icon-teal {
-  background: var(--teal-claro);
-}
-
-.produto-icon-teal i { color: var(--teal); }
-
-.produto-card:hover .produto-icon-teal {
-  background: var(--teal);
-}
+.produto-card:hover .produto-icon i { color: #fff; }
 
 .produto-card h3 {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--texto);
-  margin-bottom: 10px;
+  color: #fff;
+  margin-bottom: 8px;
 }
 
 .produto-card p {
-  font-size: 0.9rem;
-  color: var(--texto-sec);
-  line-height: 1.65;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.6;
 }
 
 /* ===== PERSONALIZAÇÃO ===== */
