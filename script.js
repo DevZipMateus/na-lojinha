@@ -166,17 +166,16 @@ window.addEventListener('scroll', () => {
   const nextBtn  = document.getElementById('lightboxNext');
   if (!overlay || !content) return;
 
-  const itens = [...document.querySelectorAll('.galeria-item[data-lb-icon]')];
+  const itens = [...document.querySelectorAll('.galeria-item[data-lb-src]')];
   let atual = 0;
 
   const renderItem = (idx) => {
-    const item   = itens[idx];
-    const icon   = item.dataset.lbIcon   || 'fas fa-image';
-    const label  = item.dataset.lbLabel  || '';
-    const sub    = `Item ${idx + 1} de ${itens.length}`;
+    const item = itens[idx];
+    const src  = item.dataset.lbSrc || '';
+    const alt  = item.querySelector('img') ? item.querySelector('img').alt : '';
+    const sub  = `${idx + 1} / ${itens.length}`;
     content.innerHTML = `
-      <div class="lb-icon"><i class="${icon}"></i></div>
-      <div class="lb-label">${label}</div>
+      <img src="${src}" alt="${alt}" class="lb-img">
       <div class="lb-sub">${sub}</div>
     `;
   };
